@@ -728,6 +728,17 @@ button   { cursor: pointer; font: inherit; }
   object-fit: cover;
 }
 
+.about-video-wrap--desktop { display: none; }
+
+@media (min-width: 1025px) {
+  .about-video-wrap--desktop { display: block; }
+  .about-video-wrap--mobile { display: none; }
+  .about-credentials .about-video-wrap--desktop {
+    grid-column: 1 / -1;
+    margin-top: .5rem;
+  }
+}
+
 /* timeline */
 .timeline {
   display: flex;
