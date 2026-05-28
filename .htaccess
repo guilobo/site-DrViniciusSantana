@@ -1,0 +1,41 @@
+# ── Libera scrapers de redes sociais (Facebook/WhatsApp) ──────
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTP_USER_AGENT} facebookexternalhit [NC,OR]
+  RewriteCond %{HTTP_USER_AGENT} Facebot              [NC,OR]
+  RewriteCond %{HTTP_USER_AGENT} WhatsApp             [NC]
+  RewriteRule .* - [L,E=SOCIAL_BOT:1]
+</IfModule>
+
+<IfModule mod_authz_core.c>
+  <If "%{ENV:SOCIAL_BOT} == '1'">
+    Require all granted
+  </If>
+</IfModule>
+
+# ── Cache de longa duração para assets estáticos ──────────────
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/webp        "access plus 1 year"
+  ExpiresByType image/png         "access plus 1 year"
+  ExpiresByType image/svg+xml     "access plus 1 year"
+  ExpiresByType image/jpeg        "access plus 1 year"
+  ExpiresByType image/x-icon      "access plus 1 year"
+  ExpiresByType text/css          "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType text/html         "access plus 1 hour"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(webp|png|svg|jpg|jpeg|ico)$">
+    Header set Cache-Control "max-age=31536000, public, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(css|js)$">
+    Header set Cache-Control "max-age=2592000, public"
+  </FilesMatch>
+</IfModule>
+
+# ── Compressão gzip ───────────────────────────────────────────
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript image/svg+xml
+</IfModule>
