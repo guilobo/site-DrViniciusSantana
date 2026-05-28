@@ -711,6 +711,23 @@ button   { cursor: pointer; font: inherit; }
   margin-bottom: 2.5rem;
 }
 
+.about-video-wrap {
+  width: min(100%, 340px);
+  margin: 0 0 2.5rem;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  background: #000;
+}
+
+.about-video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+}
+
 /* timeline */
 .timeline {
   display: flex;
@@ -1360,6 +1377,7 @@ a.contact-value:hover { color: var(--teal-light); }
 
   /* about */
   .about-credentials { grid-template-columns: 1fr 1fr; }
+  .about-video-wrap { margin-inline: auto; }
 
   /* services */
   .services-grid  { grid-template-columns: 1fr; }
