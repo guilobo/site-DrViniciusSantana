@@ -636,8 +636,8 @@ button   { cursor: pointer; font: inherit; }
 
 .about-grid {
   display: grid;
-  grid-template-columns: 380px 1fr;
-  gap: 5rem;
+  grid-template-columns: 360px minmax(0, 1.15fr);
+  gap: 3rem;
   align-items: start;
 }
 
@@ -729,13 +729,25 @@ button   { cursor: pointer; font: inherit; }
 }
 
 .about-video-wrap--desktop { display: none; }
+.about-credentials--desktop-grid { display: none; }
 
 @media (min-width: 1025px) {
   .about-video-wrap--desktop { display: block; }
   .about-video-wrap--mobile { display: none; }
+  .about-credentials--desktop-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin-bottom: 2.25rem;
+  }
+  .about-credentials--left .cred-card { display: none; }
+  .about-credentials--left {
+    grid-template-columns: 1fr;
+    justify-items: start;
+  }
   .about-credentials .about-video-wrap--desktop {
-    grid-column: 1 / -1;
-    margin-top: .5rem;
+    grid-column: 1;
+    margin-top: 0;
   }
 }
 
